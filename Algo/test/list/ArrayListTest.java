@@ -11,13 +11,13 @@ import org.junit.Test;
 
 import arrays.Arrays;
 
-public class LinkedListTest {
+public class ArrayListTest {
 
-	LinkedList list;
+	ArrayList list;
 
 	@Before
 	public void init() {
-		list = new LinkedList();
+		list = new ArrayList();
 		assertTrue("List is empty", list.isEmpty());
 	}
 
@@ -116,6 +116,7 @@ public class LinkedListTest {
 		Object[] array2 = list.toArray();
 		assertArrayEquals("Arrays should be equal", array_reversed, array2);
 		
+		
 	}
 
 	@Test
@@ -141,7 +142,7 @@ public class LinkedListTest {
 		assertEquals("0->value1", value1, list.get(0));
 		assertEquals("1->value2", value2, list.get(1));
 		
-	}	
+	}
 
 	@Test
 	public void testIndexOf() {
@@ -157,8 +158,8 @@ public class LinkedListTest {
 		assertEquals("1->value2", 1, list.indexOf(value2));
 		assertEquals("-1->value3", -1, list.indexOf(value3));		
 		
-	}	
-	
+	}		
+
 	@Test
 	public void testSet() {
 		String value1 = "value1";
@@ -169,6 +170,6 @@ public class LinkedListTest {
 		assertEquals("old->value1", value1, old);
 		assertEquals("0->value2", 0, list.indexOf(value2));
 		
-	}
+	}	
 	
 }

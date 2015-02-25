@@ -1,23 +1,25 @@
 package list;
 
+import objects.Objects;
 import structure.ListNode;
 
-public class LinkedList {
+public class LinkedList implements List {
 
 	private ListNode head;
-	
+
 	public LinkedList() {
-		
+
 	}
 
 	public LinkedList(ListNode head) {
-		this.head = head; 
+		this.head = head;
 	}
-	
+
 	public ListNode getHead() {
 		return head;
 	}
-	
+
+	@Override
 	public void add(Object value) {
 		ListNode node = new ListNode(value);
 
@@ -33,6 +35,7 @@ public class LinkedList {
 		last.next = node;
 	}
 
+	@Override
 	public boolean remove(Object value) {
 		if (isEmpty()) {
 			return false;
@@ -41,7 +44,7 @@ public class LinkedList {
 		ListNode node = head;
 		ListNode prev = null;
 		do {
-			if (equal(node.value, value)) {
+			if (Objects.equals(node.value, value)) {
 				if (node == head) {
 					head = head.next;
 				} else {
@@ -56,31 +59,22 @@ public class LinkedList {
 		return false;
 	}
 
+	@Override
 	public void clear() {
 		head = null;
 	}
 
+	@Override
 	public boolean contains(Object value) {
-		if (isEmpty()) {
-			return false;
-		}
-
-		ListNode node = head;
-		while (node != null) {
-			if (equal(node.value, value)) {
-				return true;
-			}
-			node = node.next;
-		}
-
-		return false;
+		return indexOf(value) != -1;
 	}
 
+	@Override
 	public void reverse() {
 		if (isEmpty()) {
 			return;
 		}
-		
+
 		ListNode node = head;
 		ListNode prev = null;
 		while (node != null) {
@@ -93,13 +87,14 @@ public class LinkedList {
 		}
 		// set tail to head
 		head = prev;
-		
+
 	}
-	
+
+	@Override
 	public Object[] toArray() {
 		int size = size();
 		Object[] array = new Object[size];
-		
+
 		ListNode node = head;
 		int counter = 0;
 		while (node != null) {
@@ -109,7 +104,8 @@ public class LinkedList {
 		}
 		return array;
 	}
-	
+
+	@Override
 	public int size() {
 		if (isEmpty()) {
 			return 0;
@@ -123,20 +119,71 @@ public class LinkedList {
 		return counter;
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return head == null;
 	}
 
-	private boolean equal(Object o1, Object o2) {
-		if (o1 == null && o2 == null) {
-			return true;
+	@Override
+	public Object get(int index) {
+		if (index < 0 || isEmpty()) {
+			throw new IndexOutOfBoundsException();
 		}
 
-		if (o1 != null) {
-			return o1.equals(o2);
+		ListNode node = head;
+		int counter = 0;
+		while (node != null && counter < index) {
+			node = node.next;
+			counter++;
 		}
 
-		return o2.equals(o1);
+		if (counter < index) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		return node.value;
+
+	}
+
+	@Override
+	public int indexOf(Object value) {
+		if (isEmpty()) {
+			return -1;
+		}
+
+		ListNode node = head;
+		int counter = 0;
+		while (node != null) {
+			if (Objects.equals(node.value, value)) {
+				return counter;
+			}
+			node = node.next;
+			counter++;
+		}
+
+		return -1;
+	}
+
+	@Override
+	public Object set(int index, Object value) {
+		if (index < 0 || isEmpty()) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		ListNode node = head;
+		int counter = 0;
+		while (node != null && counter < index) {
+			node = node.next;
+			counter++;
+		}
+
+		if (counter < index) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Object old = node.value;
+		node.value = value;
+		return old;
 	}
 
 }
