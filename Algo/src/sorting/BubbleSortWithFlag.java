@@ -1,5 +1,7 @@
 package sorting;
 
+import arrays.Arrays;
+
 public class BubbleSortWithFlag extends SortingMethodBase {
 
 	@Override
@@ -14,7 +16,7 @@ public class BubbleSortWithFlag extends SortingMethodBase {
 			flag = false;
 			for (int j = 0; j < array.length - 1; j++) {
 				if (array[j] > array[j + 1]) {
-					swap(array, j, j + 1);
+					Arrays.swap(array, j, j + 1);
 					flag = true; // there was a swap
 				}
 			}

@@ -1,5 +1,7 @@
 package sorting;
 
+import arrays.Arrays;
+
 public class QuickSort extends SortingMethodBase {
 
 	@Override
@@ -43,7 +45,7 @@ public class QuickSort extends SortingMethodBase {
 			}
 			
 			if (i <= j) {
-				swap(array, i, j);
+				Arrays.swap(array, i, j);
 				i++;
 				j--;
 			}
