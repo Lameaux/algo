@@ -1,10 +1,10 @@
 package sorting;
 
-public class BubbleSort extends SortingMethodBase implements SortingMethod {
+public class BubbleSort extends SortingMethodBase {
 
 	@Override
 	public String description() {
-		return "Very simple implementation of BubbleSort (2 loops)";
+		return "2 loops implementation";
 	}
 
 	@Override
@@ -19,17 +19,5 @@ public class BubbleSort extends SortingMethodBase implements SortingMethod {
 
 	}
 
-	@Override
-	public <T extends Comparable<T>> void sortComparables(T[] array) {
-		T tmp;
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length - 1; j++) {
-				if (array[j].compareTo(array[j+1]) > 0) {
-					swap(array, j, j + 1);
-				}
-			}
-		}
-
-	}
 
 }

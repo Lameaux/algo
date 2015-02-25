@@ -2,7 +2,7 @@ package helper;
 
 import java.util.Random;
 
-import entities.TreeNode;
+import structure.TreeNode;
 
 public class Generator {
 
