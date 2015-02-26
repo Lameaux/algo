@@ -1,4 +1,4 @@
-package structure;
+package list;
 
 public class ListNode {
 

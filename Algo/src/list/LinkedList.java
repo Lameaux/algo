@@ -1,7 +1,6 @@
 package list;
 
 import objects.Objects;
-import structure.ListNode;
 
 public class LinkedList implements List {
 

@@ -1,7 +1,7 @@
 package list.puzzles;
 
 import list.LinkedList;
-import structure.ListNode;
+import list.ListNode;
 
 public class LinkedListReverse {
 
