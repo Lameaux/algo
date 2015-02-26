@@ -1,16 +1,16 @@
 package tree;
 
-public class TreeNode {
+public class TreeNode<T extends Comparable<T>> {
 	
-	public TreeNode left;
-	public TreeNode right;
-	public Object value;
+	public TreeNode<T> left;
+	public TreeNode<T> right;
+	public T value;
 	
 	public TreeNode() {
 		
 	}
 	
-	public TreeNode(Object value) {
+	public TreeNode(T value) {
 		this.value = value;
 	}
 	

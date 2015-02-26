@@ -6,6 +6,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Field;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -171,5 +173,26 @@ public class ArrayListTest {
 		assertEquals("0->value2", 0, list.indexOf(value2));
 		
 	}	
+	
+	@Test
+	public void testTrimToSize() {
+		String value1 = "value1";
+		list.add(value1);
+		assertEquals("Size = 1", 1, list.size());
+		list.trimToSize();
+		assertEquals("Size = 1", 1, list.size());
+		
+		
+		try {
+			Field f = list.getClass().getDeclaredField("array");
+			f.setAccessible(true);
+			Object[] array = (Object[])f.get(list);
+			assertEquals("Size = 1", 1, array.length);
+		} catch (Exception e) {
+			fail("Unable to check the size");
+		}
+		
+		
+	}
 	
 }

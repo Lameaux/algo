@@ -53,6 +53,11 @@ public class LinkedList implements List {
 				} else {
 					prev.next = node.next;
 				}
+				
+				// GC
+				node.next = null;
+				node.value = null;
+				
 				return true;
 			}
 			prev = node;
@@ -64,6 +69,19 @@ public class LinkedList implements List {
 
 	@Override
 	public void clear() {
+		if (isEmpty()) {
+			return;
+		}
+
+		ListNode node = head;
+		while (node.next != null) {
+			ListNode curr = node;
+			node = node.next;
+			// GC
+			curr.next = null;
+			curr.value = null;
+		}		
+		
 		head = null;
 	}
 

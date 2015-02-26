@@ -19,21 +19,27 @@ public class ArrayList implements List {
 		array = new Object[size];
 	}
 
-	private void enlargeArray() {
-		Object[] newArray = new Object[array.length * ARRAY_GROW_RATIO];
-		System.arraycopy(array, 0, newArray, 0, array.length);
-		array = newArray;
+	private void ensureCapacity(int capacity) {
+		if (capacity > array.length) {
+			Object[] newArray = new Object[array.length * ARRAY_GROW_RATIO];
+			System.arraycopy(array, 0, newArray, 0, array.length);
+			array = newArray;
+		}
+	}
+
+	public void trimToSize() {
+		if (count < array.length) {
+			Object[] newArray = new Object[count];
+			System.arraycopy(array, 0, newArray, 0, count);
+			array = newArray;
+		}
 	}
 
 	@Override
 	public void add(Object value) {
-		if (count == array.length) {
-			enlargeArray();
-		}
-
+		ensureCapacity(count + 1);
 		array[count] = value;
 		count++;
-
 	}
 
 	@Override
@@ -50,8 +56,10 @@ public class ArrayList implements List {
 				if (i < count - 1) {
 					System.arraycopy(array, i + 1, array, i, count - i - 1);
 				}
+				// GC
+				array[count-1] = null;
 				count--;
-
+				
 				return true;
 			}
 		}
@@ -61,13 +69,15 @@ public class ArrayList implements List {
 
 	@Override
 	public void clear() {
+		// GC
+		java.util.Arrays.fill(array, 0, count - 1, null);
 		count = 0;
 
 	}
 
 	@Override
 	public boolean contains(Object value) {
-		return indexOf(value) != -1; 
+		return indexOf(value) != -1;
 	}
 
 	@Override
