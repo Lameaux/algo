@@ -21,14 +21,14 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public int size() {
-		return treeSize(top);
+		return rSize(top);
 	}
 
-	private int treeSize(TreeNode<T> root) {
+	private int rSize(TreeNode<T> root) {
 		if (root == null) {
 			return 0;
 		}
-		return 1 + treeSize(root.left) + treeSize(root.right);
+		return 1 + rSize(root.left) + rSize(root.right);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 			return;
 		}
 
-		add(top, value);
+		rAdd(top, value);
 
 	}
 
-	private void add(TreeNode<T> root, T value) {
+	private void rAdd(TreeNode<T> root, T value) {
 
 		if (Objects.equals(root.value, value)) {
 			throw new IllegalArgumentException("Duplicate key");
@@ -57,48 +57,59 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 			if (root.left == null) {
 				root.left = new TreeNode<T>(value);
 			} else {
-				add(root.left, value);
+				rAdd(root.left, value);
 			}
 		} else {
 			if (root.right == null) {
 				root.right = new TreeNode<T>(value);
 			} else {
-				add(root.right, value);
+				rAdd(root.right, value);
 			}
 		}
 
 	}
 
-	
-	
-	@Override	
+	@Override
 	public Object[] toArray() {
 		Object[] array = new Object[size()];
-		
-		writeTreeArray(top, array, 0);
-		
+
+		rToArray(top, array, 0);
+
 		return array;
 	}
-	
-	private int writeTreeArray(TreeNode<T> node, Object[] array, int offset) {
+
+	private int rToArray(TreeNode<T> node, Object[] array, int offset) {
 		if (node == null) {
 			return offset;
 		}
-		
+
 		if (node.left != null) {
-			offset = writeTreeArray(node.left, array, offset);
+			offset = rToArray(node.left, array, offset);
 		}
-		
+
 		array[offset] = node.value;
 		offset++;
-		
+
 		if (node.right != null) {
-			offset = writeTreeArray(node.right, array, offset);
+			offset = rToArray(node.right, array, offset);
 		}
-		
-		
+
 		return offset;
-		
+
 	}
-	
+
+	@Override
+	public int height() {
+		return rHeight(top);
+	}
+
+	private int rHeight(TreeNode<T> node) {
+		if (node == null) {
+			return 0;
+		}
+
+		return Math.max(rHeight(node.left), rHeight(node.right)) + 1;
+
+	}
+
 }

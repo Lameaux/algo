@@ -50,4 +50,19 @@ public class BSTRecursiveTest {
 		assertEquals(N, tree.size());
 	}
 	
+	@Test
+	public void testHeight() {
+
+		String value1 = "value1";
+		String value2 = "value2";		
+		
+		assertEquals(0, tree.height());
+
+		tree.add(value1);
+		assertEquals(1, tree.height());
+
+		tree.add(value2);
+		assertEquals(2, tree.height());		
+	}
+	
 }

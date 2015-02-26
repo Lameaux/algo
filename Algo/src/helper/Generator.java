@@ -6,8 +6,8 @@ import tree.TreeNode;
 
 public class Generator {
 
-	public static TreeNode singleNodeTree() {
-		return new TreeNode();
+	public static TreeNode<String> singleNodeTree() {
+		return new TreeNode<String>();
 	}
 	
 	public static int[] arrayOfRandomNumbers(int size) {

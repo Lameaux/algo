@@ -9,5 +9,7 @@ public interface BST<T extends Comparable<T>> {
 	Object[] toArray();
 
 	void add(T value);
+	
+	int height();
 
 }
