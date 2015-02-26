@@ -10,6 +10,8 @@ public interface BST<T extends Comparable<T>> {
 
 	void add(T value);
 	
+	boolean contains(T value);
+	
 	int height();
 
 }

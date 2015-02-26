@@ -37,9 +37,8 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 			throw new IllegalArgumentException("Null is not supported");
 		}
 
-		TreeNode<T> newNode = new TreeNode<T>(value);
 		if (isEmpty()) {
-			top = newNode;
+			top = new TreeNode<T>(value);
 			return;
 		}
 
@@ -112,4 +111,34 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 
 	}
 
+	@Override
+	public boolean contains(T value) {
+		if (value == null) {
+			throw new IllegalArgumentException("Null is not supported");
+		}
+
+		if (isEmpty()) {
+			return false;
+		}
+
+		return rContains(top, value);
+	}
+
+	private boolean rContains(TreeNode<T> root, T value) {
+		
+		if (root == null) {
+			return false;
+		}
+		
+		if (Objects.equals(root.value, value)) {
+			return true;
+		}
+
+		if (Objects.less(value, root.value)) {
+			return rContains(root.left, value);
+		} else {
+			return rContains(root.right, value);
+		}
+	}
+	
 }

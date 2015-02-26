@@ -64,5 +64,20 @@ public class BSTRecursiveTest {
 		tree.add(value2);
 		assertEquals(2, tree.height());		
 	}
+
+	@Test
+	public void testContains() {
+
+		String value1 = "value1";
+		String value2 = "value2";		
+		
+		assertFalse("Not contains 1", tree.contains(value1));
+		tree.add(value1);
+		assertTrue("Should contain 1", tree.contains(value1));
+
+		assertFalse("Not contains 2", tree.contains(value2));		
+		tree.add(value2);
+		assertTrue("Should contain 2", tree.contains(value2));		
+	}	
 	
 }
