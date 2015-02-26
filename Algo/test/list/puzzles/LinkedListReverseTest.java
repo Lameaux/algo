@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import arrays.Arrays;
 
-public class ListOperationsTest {
+public class LinkedListReverseTest {
 
 	@Test
 	public void testReverseRecursiveLinkedList() {
@@ -23,7 +23,7 @@ public class ListOperationsTest {
 		Object[] listArray = list.toArray();
 		Arrays.reverse(listArray);
 		
-		ListOperations.reverseRecursiveLinkedList(list);
+		LinkedListReverse.reverseRecursive(list);
 		
 		Object[] listArray2 = list.toArray();
 		

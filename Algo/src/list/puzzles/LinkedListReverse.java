@@ -3,32 +3,29 @@ package list.puzzles;
 import list.LinkedList;
 import structure.ListNode;
 
+public class LinkedListReverse {
 
-public class ListOperations {
+	public static void reverseRecursive(LinkedList list) {
 
-	public static void reverseRecursiveLinkedList(LinkedList list) {
-		
 		ListNode head = list.getHead();
-		ListNode tail = reverseList(head);
+		ListNode tail = reverse(head);
 		list.setHead(tail);
 	}
-	
-	private static ListNode reverseList(ListNode head) {
+
+	private static ListNode reverse(ListNode head) {
 		if (head == null) {
 			return null;
 		}
-		
 		if (head.next == null) {
 			return head;
 		}
-		
 		ListNode newHead = head.next;
 		head.next = null;
-		ListNode reversed = reverseList(newHead);
-		newHead.next=head;
+		ListNode reversed = reverse(newHead);
+		newHead.next = head;
 
 		return reversed;
-		
+
 	}
-	
+
 }
