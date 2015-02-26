@@ -19,6 +19,10 @@ public class LinkedList implements List {
 		return head;
 	}
 
+	public void setHead(ListNode head) {
+		this.head = head;
+	}
+	
 	@Override
 	public void add(Object value) {
 		ListNode node = new ListNode(value);
