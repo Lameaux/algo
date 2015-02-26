@@ -4,7 +4,7 @@ public class Arrays {
 
 	public static void reverse(Object[] array) {
 		int left = 0;
-		int right = array.length-1;
+		int right = array.length - 1;
 		while (left < right) {
 			swap(array, left, right);
 			left++;
@@ -22,6 +22,11 @@ public class Arrays {
 		Object tmp = array[j];
 		array[j] = array[i];
 		array[i] = tmp;
-	}	
-	
+	}
+
+	public static void swapXOR(int[] array, int i, int j) {
+		array[i] = array[i] ^ array[j]; // i^j
+		array[j] = array[i] ^ array[j]; // i^j^j = i
+		array[i] = array[i] ^ array[j]; // j^j^i = j
+	}
 }
