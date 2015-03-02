@@ -8,7 +8,10 @@ public class Objects {
 	}
 
 	public static <T extends Comparable<T>> boolean less(T a, T b) {
-		return a.compareTo(b) < 0;
+		if (a == b) return false;
+		if (a == null) return false;
+		if (b == null) return true;
+		return  a.compareTo(b) < 0;
 	}
 
 }
