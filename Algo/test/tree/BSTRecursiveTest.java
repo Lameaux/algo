@@ -23,13 +23,43 @@ public class BSTRecursiveTest {
 		String value1 = "value1";
 		String value2 = "value2";
 
-		tree.add(value1);
+		assertTrue("New element", tree.add(value1));
 		assertFalse("Tree is not empty", tree.isEmpty());
 
+		assertFalse("Duplicate element", tree.add(value1));		
+		
 		tree.add(value2);
 		assertEquals("N = 2", 2, tree.size());
 	}
 
+	@Test
+	public void testDelete() {
+		String value1 = "value1";
+		String value2 = "value2";
+		String value3 = "value3";
+		String value4 = "value4";		
+
+		assertTrue("New element", tree.add(value1));
+		assertFalse("Tree is not empty", tree.isEmpty());
+		
+		assertTrue("New element", tree.add(value2));
+		assertFalse("Exists", tree.add(value2));
+		
+		assertFalse("Delete not existing", tree.delete(value3));
+		
+		assertTrue("Delete existing", tree.delete(value1));
+		assertTrue("New element", tree.add(value1));
+		
+		assertTrue("New element", tree.add(value3));
+		
+		assertTrue("Delete existing", tree.delete(value1));
+		assertTrue("Delete existing", tree.delete(value2));
+		assertTrue("Delete existing", tree.delete(value3));
+		assertFalse("Delete not existing", tree.delete(value4));		
+		
+	}	
+	
+	
 	@Test
 	public void testToArray() {
 		String[] array = new String[] { "1", "2", "3", "4", "5" };

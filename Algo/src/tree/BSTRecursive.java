@@ -32,37 +32,39 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 	}
 
 	@Override
-	public void add(T value) {
+	public boolean add(T value) {
 		if (value == null) {
 			throw new IllegalArgumentException("Null is not supported");
 		}
 
 		if (isEmpty()) {
 			top = new TreeNode<T>(value);
-			return;
+			return true;
 		}
 
-		rAdd(top, value);
+		return rAdd(top, value);
 
 	}
 
-	private void rAdd(TreeNode<T> root, T value) {
+	private boolean rAdd(TreeNode<T> root, T value) {
 
 		if (Objects.equals(root.value, value)) {
-			throw new IllegalArgumentException("Duplicate key");
+			return false;
 		}
 
 		if (Objects.less(value, root.value)) {
 			if (root.left == null) {
 				root.left = new TreeNode<T>(value);
+				return true;
 			} else {
-				rAdd(root.left, value);
+				return rAdd(root.left, value);
 			}
 		} else {
 			if (root.right == null) {
 				root.right = new TreeNode<T>(value);
+				return true;
 			} else {
-				rAdd(root.right, value);
+				return rAdd(root.right, value);
 			}
 		}
 
@@ -125,11 +127,11 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private boolean rContains(TreeNode<T> root, T value) {
-		
+
 		if (root == null) {
 			return false;
 		}
-		
+
 		if (Objects.equals(root.value, value)) {
 			return true;
 		}
@@ -140,5 +142,73 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 			return rContains(root.right, value);
 		}
 	}
-	
+
+	@Override
+	public boolean delete(T value) {
+		if (value == null) {
+			throw new IllegalArgumentException("Null is not supported");
+		}
+
+		if (isEmpty()) {
+			return false;
+		}
+
+		try {
+			top = rDelete(top, value);
+			return true;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+	}
+
+	private TreeNode<T> minNode(TreeNode<T> node) {
+		while (node.left != null) {
+			node = node.left;
+		}
+		return node;
+	}
+
+	private TreeNode<T> rDelete(TreeNode<T> root, T value) throws IllegalArgumentException {
+		if (Objects.equals(root.value, value)) {
+			if (root.left == null && root.right == null) {
+				// GC
+				root.value = null;
+				return null;
+			} else if (root.left != null && root.right == null) {
+				TreeNode<T> newRoot = root.left;
+				root.left = null;
+				// GC
+				root.value = null;
+				return newRoot;
+			} else if (root.left == null && root.right != null) {
+				TreeNode<T> newRoot = root.right;
+				root.right = null;
+				// GC
+				root.value = null;
+				return newRoot;
+			} else { // has both leaves
+				TreeNode<T> minimalRight = minNode(root.right);
+				// copy minimal value to root
+				root.value = minimalRight.value;
+				root.right = rDelete(root.right, minimalRight.value);
+			}
+
+		} else if (Objects.less(value, root.value)) {
+			if (root.left == null) {
+				throw new IllegalArgumentException(value + " not found");
+			} else {
+				root.left = rDelete(root.left, value);
+			}
+		} else {
+			if (root.right == null) {
+				throw new IllegalArgumentException(value + " not found");
+			} else {
+				root.right = rDelete(root.right, value);
+			}
+		}
+
+		return root;
+
+	}
+
 }

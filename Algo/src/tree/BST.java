@@ -8,7 +8,8 @@ public interface BST<T extends Comparable<T>> {
 
 	Object[] toArray();
 
-	void add(T value);
+	boolean add(T value);
+	boolean delete(T value);
 	
 	boolean contains(T value);
 	
