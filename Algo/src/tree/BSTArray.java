@@ -15,7 +15,14 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 	private T[] array;
 	private int count;
 
-	@SuppressWarnings("unchecked")
+	private static final int ARRAY_GROW_RATIO = 3;
+	private static final int DEFAULT_HEIGHT = 3;
+
+	public BSTArray() {
+		this(DEFAULT_HEIGHT);
+	}
+
+	@SuppressWarnings("unchecked")	
 	public BSTArray(int treeHeight) {
 		int arrayLength = (int) Math.pow(2, treeHeight) - 1; // 2**height - 1
 		array = (T[]) new Comparable[arrayLength];
@@ -38,6 +45,15 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 		rToArray(0, result, 0);
 
 		return result;
+	}
+
+	private void ensureCapacity(int capacity) {
+		if (capacity >= array.length) {
+			@SuppressWarnings("unchecked")
+			T[] newArray = (T[]) new Comparable[capacity * ARRAY_GROW_RATIO];
+			System.arraycopy(array, 0, newArray, 0, array.length);
+			array = newArray;
+		}
 	}
 
 	private int rToArray(int index, Object[] result, int offset) {
@@ -85,12 +101,15 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 		}
 
 		int current = 0;
-		while (current < array.length) {
+		while (true) {
+
+			ensureCapacity(current);
 			if (Objects.equals(value, array[current])) {
 				// duplicate
 				return false;
 			} else if (Objects.less(value, array[current])) { // check left
 				int leftIndex = left(current);
+				ensureCapacity(leftIndex);
 				if (array[leftIndex] == null) {
 					array[leftIndex] = value;
 					count++;
@@ -100,6 +119,7 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 				}
 			} else { // check right
 				int rightIndex = right(current);
+				ensureCapacity(rightIndex);
 				if (array[rightIndex] == null) {
 					array[rightIndex] = value;
 					count++;
@@ -109,8 +129,6 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 				}
 			}
 		}
-
-		throw new ArrayIndexOutOfBoundsException("Backing array is too small for this tree");
 
 	}
 

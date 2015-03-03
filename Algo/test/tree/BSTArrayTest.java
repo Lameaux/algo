@@ -95,9 +95,9 @@ public class BSTArrayTest {
 			for (int i = 0; i < N; i++) {
 				tree.add(String.valueOf(i));
 			}
-			fail("Shouil throw Exception");
+			
 		} catch (ArrayIndexOutOfBoundsException ex ) {
-			// should catch this
+			fail("Should not throw Exception");
 		}
 	}
 
