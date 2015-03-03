@@ -1,6 +1,6 @@
 # Algorithms and Data Structures
 
-This is my sandbox for playing with algorihtms and data structures. There you can find **Java** implementation of:
+This is my sandbox for playing with algorithms and data structures. There you can find **Java** implementation of:
 
 ### Sorting
   - Bubble Sort
@@ -17,18 +17,17 @@ This is my sandbox for playing with algorihtms and data structures. There you ca
   - BST using recursion
 
 ### Utilities
-  - Reversion of LinkedList and Array
+  - Reversion of LinkedList and array
   - Swapping using XOR
+  - Object.equals
   - etc.
 
 ### Programming Puzzles
   - PermissionTree (TopCoder)
   - BloggDocStructure (TopCoder)
 
-I will update this list frequently.
+
+Code is covered with unit-tests. You can import the project in Eclipse and run tests with JUnit.
 
 P.S. Feel free to use any of these codes.
-
-
-
 
