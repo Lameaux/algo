@@ -1,7 +1,8 @@
 # Algorithms and Data Structures
 
 This is my sandbox for playing with algorihtms and data structures. There you can find **Java** implementation of:
- ### Sorting
+
+### Sorting
   - Bubble Sort
   - Insertion Sort
   - MergeSort
