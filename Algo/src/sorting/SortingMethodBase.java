@@ -7,4 +7,9 @@ public abstract class SortingMethodBase implements SortingMethod {
 		throw new RuntimeException("Not implemented");
 	}
 
+	@Override
+	public void sortNumbers(int[] array) {
+		throw new RuntimeException("Not implemented");
+	}	
+	
 }

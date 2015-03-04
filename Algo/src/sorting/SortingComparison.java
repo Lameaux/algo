@@ -17,9 +17,10 @@ public class SortingComparison {
 		methods.add(new BubbleSort());
 		methods.add(new BubbleSortWithFlag());
 		methods.add(new InsertionSort());
+		//methods.add(new SelectionSort());
 		methods.add(new MergeSort());
 		methods.add(new QuickSort());
-		//methods.add(new RadixSort());
+		//methods.add(new RadixSort());		
 	}
 
 	public void start() {
