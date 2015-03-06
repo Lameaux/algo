@@ -51,6 +51,7 @@ public abstract class StackTestBase {
 			assertEquals("Should be equal", value, stack.peek());
 		}
 		assertEquals("Should be equal", value, stack.pop());
+		assertTrue("Stack is empty", stack.empty());
 		try {
 			stack.peek();
 			fail("Should throw EmptyStackException");
