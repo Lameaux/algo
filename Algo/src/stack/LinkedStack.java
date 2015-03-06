@@ -2,6 +2,8 @@ package stack;
 
 import java.util.EmptyStackException;
 
+import list.ListNode;
+
 public class LinkedStack<E> implements Stack<E> {
 
 	private ListNode<E> head;
@@ -42,17 +44,3 @@ public class LinkedStack<E> implements Stack<E> {
 
 }
 
-class ListNode<T> {
-
-	public ListNode<T> next;
-	public T value;
-
-	public ListNode() {
-
-	}
-
-	public ListNode(T value) {
-		this.value = value;
-	}
-
-}
