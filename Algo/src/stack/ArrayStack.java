@@ -1,12 +1,14 @@
 package stack;
 
+import java.util.EmptyStackException;
+
 public class ArrayStack<E> implements Stack<E> {
 
 	private static final int INITIAL_STACK_SIZE = 32;
 	private static final int ARRAY_GROW_RATIO = 2;
 
 	private E[] array;
-	int index = -1;
+	int size = 0;
 
 	@SuppressWarnings("unchecked")
 	public ArrayStack() {
@@ -24,27 +26,32 @@ public class ArrayStack<E> implements Stack<E> {
 
 	@Override
 	public E push(E value) {
-		ensureCapacity(index + 1);
-		index++;
-		array[index] = value;
+		ensureCapacity(size + 1);
+		array[size++] = value;
 		return value;
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		E value = peek();
+		// GC
+		array[size - 1] = null;
+		size--;
+		return value;
+		
 	}
 
 	@Override
 	public E peek() {
-		// TODO Auto-generated method stub
-		return null;
+		if (empty()) {
+			throw new EmptyStackException();
+		}
+		return array[size - 1];
 	}
 
 	@Override
 	public boolean empty() {
-		return index == -1;
+		return size == 0;
 	}
 
 }
