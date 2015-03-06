@@ -52,6 +52,8 @@ public class BSTArray<T extends Comparable<T>> implements BST<T> {
 			@SuppressWarnings("unchecked")
 			T[] newArray = (T[]) new Comparable[capacity * ARRAY_GROW_RATIO];
 			System.arraycopy(array, 0, newArray, 0, array.length);
+			// GC
+			java.util.Arrays.fill(array, 0, array.length-1, null);			
 			array = newArray;
 		}
 	}

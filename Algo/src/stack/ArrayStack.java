@@ -10,9 +10,13 @@ public class ArrayStack<E> implements Stack<E> {
 	private E[] array;
 	int size = 0;
 
-	@SuppressWarnings("unchecked")
 	public ArrayStack() {
-		array = (E[]) new Object[INITIAL_STACK_SIZE];
+		this(INITIAL_STACK_SIZE);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayStack(int initialCapacity) {
+		array = (E[]) new Object[initialCapacity];
 	}
 
 	private void ensureCapacity(int capacity) {
@@ -20,6 +24,8 @@ public class ArrayStack<E> implements Stack<E> {
 			@SuppressWarnings("unchecked")
 			E[] newArray = (E[]) new Object[array.length * ARRAY_GROW_RATIO];
 			System.arraycopy(array, 0, newArray, 0, array.length);
+			// GC
+			java.util.Arrays.fill(array, 0, array.length-1, null);			
 			array = newArray;
 		}
 	}
@@ -38,7 +44,7 @@ public class ArrayStack<E> implements Stack<E> {
 		array[size - 1] = null;
 		size--;
 		return value;
-		
+
 	}
 
 	@Override

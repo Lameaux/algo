@@ -25,6 +25,8 @@ public class ArrayList<T> implements List<T> {
 			@SuppressWarnings("unchecked")
 			T[] newArray = (T[])new Object[array.length * ARRAY_GROW_RATIO];
 			System.arraycopy(array, 0, newArray, 0, array.length);
+			// GC
+			java.util.Arrays.fill(array, 0, array.length-1, null);			
 			array = newArray;
 		}
 	}
