@@ -15,15 +15,9 @@ public class BloggoDocStructure {
 		HtmlNode a = buildTree(docA);
 		HtmlNode b = buildTree(docB);
 
-		System.out.println(getSize(a) + " " + a.toString());
-		System.out.println(getSize(b) + " " + b.toString());
-
 		int outtree = partialMatch(a, b);
 		int intree = partialMatch(b, a);
 
-		System.out.println(intree);		
-		System.out.println(outtree);
-		
 		if (intree > -1 && outtree > -1) {
 			return "equivalent";
 		} else if (intree == -1 && outtree == -1) {
