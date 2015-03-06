@@ -1,6 +1,7 @@
 ### Things to do:
 
-  - Iterative Linked List
+  - Stack, Queue
+  - Iterative BST (stack/queue)
   - Balanced BST (AVL)
   - Heap
   - Radix Sort
