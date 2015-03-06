@@ -3,25 +3,27 @@ package list;
 import objects.Objects;
 import arrays.Arrays;
 
-public class ArrayList implements List {
+public class ArrayList<T> implements List<T> {
 
 	private static final int DEFAULT_SIZE = 32;
 	private static final int ARRAY_GROW_RATIO = 2;
 
-	private Object[] array;
+	private T[] array;
 	private int count = 0;
 
 	public ArrayList() {
 		this(DEFAULT_SIZE);
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList(int size) {
-		array = new Object[size];
+		array = (T[])new Object[size];
 	}
 
 	private void ensureCapacity(int capacity) {
 		if (capacity > array.length) {
-			Object[] newArray = new Object[array.length * ARRAY_GROW_RATIO];
+			@SuppressWarnings("unchecked")
+			T[] newArray = (T[])new Object[array.length * ARRAY_GROW_RATIO];
 			System.arraycopy(array, 0, newArray, 0, array.length);
 			array = newArray;
 		}
@@ -29,21 +31,22 @@ public class ArrayList implements List {
 
 	public void trimToSize() {
 		if (count < array.length) {
-			Object[] newArray = new Object[count];
+			@SuppressWarnings("unchecked")
+			T[] newArray = (T[])new Object[count];
 			System.arraycopy(array, 0, newArray, 0, count);
 			array = newArray;
 		}
 	}
 
 	@Override
-	public void add(Object value) {
+	public void add(T value) {
 		ensureCapacity(count + 1);
 		array[count] = value;
 		count++;
 	}
 
 	@Override
-	public boolean remove(Object value) {
+	public boolean remove(T value) {
 		if (isEmpty()) {
 			return false;
 		}
@@ -76,7 +79,7 @@ public class ArrayList implements List {
 	}
 
 	@Override
-	public boolean contains(Object value) {
+	public boolean contains(T value) {
 		return indexOf(value) != -1;
 	}
 
@@ -106,7 +109,7 @@ public class ArrayList implements List {
 	}
 
 	@Override
-	public Object get(int index) {
+	public T get(int index) {
 
 		if (index < 0 || index > count - 1) {
 			throw new IndexOutOfBoundsException();
@@ -116,7 +119,7 @@ public class ArrayList implements List {
 	}
 
 	@Override
-	public int indexOf(Object value) {
+	public int indexOf(T value) {
 		if (isEmpty()) {
 			return -1;
 		}
@@ -131,12 +134,12 @@ public class ArrayList implements List {
 	}
 
 	@Override
-	public Object set(int index, Object value) {
+	public T set(int index, T value) {
 		if (index < 0 || index > count - 1) {
 			throw new IndexOutOfBoundsException();
 		}
 
-		Object old = array[index];
+		T old = array[index];
 		array[index] = value;
 		return old;
 	}

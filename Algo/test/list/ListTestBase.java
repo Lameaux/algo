@@ -13,9 +13,9 @@ import arrays.Arrays;
 
 public abstract class ListTestBase {
 
-	protected List list;
+	protected List<String> list;
 
-	protected abstract List getListImpl();
+	protected abstract List<String> getListImpl();
 
 	@Before
 	public void init() {
@@ -95,8 +95,8 @@ public abstract class ListTestBase {
 
 	@Test
 	public void testToArray() {
-		Object[] array = new Object[] { 1, 2, 3, 4, 5, 6 };
-		for (Object o : array) {
+		String[] array = new String[] { "1", "2", "3", "4", "5", "6" };
+		for (String o : array) {
 			list.add(o);
 		}
 		assertEquals("List size = Array length", array.length, list.size());
@@ -106,11 +106,11 @@ public abstract class ListTestBase {
 
 	@Test
 	public void testReverse() {
-		Object[] array = new Object[] { 1, 2, 3, 4, 5, 6 };
-		Object[] array_reversed = array.clone();
+		String[] array = new String[] { "1", "2", "3", "4", "5", "6" };
+		String[] array_reversed = array.clone();
 		Arrays.reverse(array_reversed);
 
-		for (Object o : array) {
+		for (String o : array) {
 			list.add(o);
 		}
 		assertEquals("List size = Array length", array.length, list.size());

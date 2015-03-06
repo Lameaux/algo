@@ -2,36 +2,36 @@ package list;
 
 import objects.Objects;
 
-public class LinkedList implements List {
+public class LinkedList<T> implements List<T> {
 
-	private ListNode head;
+	private ListNode<T> head;
 
 	public LinkedList() {
 
 	}
 
-	public LinkedList(ListNode head) {
+	public LinkedList(ListNode<T> head) {
 		this.head = head;
 	}
 
-	public ListNode getHead() {
+	public ListNode<T> getHead() {
 		return head;
 	}
 
-	public void setHead(ListNode head) {
+	public void setHead(ListNode<T> head) {
 		this.head = head;
 	}
 	
 	@Override
-	public void add(Object value) {
-		ListNode node = new ListNode(value);
+	public void add(T value) {
+		ListNode<T> node = new ListNode<T>(value);
 
 		if (isEmpty()) {
 			head = node;
 			return;
 		}
 
-		ListNode last = head;
+		ListNode<T> last = head;
 		while (last.next != null) {
 			last = last.next;
 		}
@@ -39,13 +39,13 @@ public class LinkedList implements List {
 	}
 
 	@Override
-	public boolean remove(Object value) {
+	public boolean remove(T value) {
 		if (isEmpty()) {
 			return false;
 		}
 
-		ListNode node = head;
-		ListNode prev = null;
+		ListNode<T> node = head;
+		ListNode<T> prev = null;
 		do {
 			if (Objects.equals(node.value, value)) {
 				if (node == head) {
@@ -73,9 +73,9 @@ public class LinkedList implements List {
 			return;
 		}
 
-		ListNode node = head;
+		ListNode<T> node = head;
 		while (node.next != null) {
-			ListNode curr = node;
+			ListNode<T> curr = node;
 			node = node.next;
 			// GC
 			curr.next = null;
@@ -86,7 +86,7 @@ public class LinkedList implements List {
 	}
 
 	@Override
-	public boolean contains(Object value) {
+	public boolean contains(T value) {
 		return indexOf(value) != -1;
 	}
 
@@ -96,11 +96,11 @@ public class LinkedList implements List {
 			return;
 		}
 
-		ListNode node = head;
-		ListNode prev = null;
+		ListNode<T> node = head;
+		ListNode<T> prev = null;
 		while (node != null) {
 			// save next reference
-			ListNode next = node.next;
+			ListNode<T> next = node.next;
 			// reverse ref to previous element
 			node.next = prev;
 			prev = node;
@@ -116,7 +116,7 @@ public class LinkedList implements List {
 		int size = size();
 		Object[] array = new Object[size];
 
-		ListNode node = head;
+		ListNode<T> node = head;
 		int counter = 0;
 		while (node != null) {
 			array[counter] = node.value;
@@ -132,7 +132,7 @@ public class LinkedList implements List {
 			return 0;
 		}
 		int counter = 1;
-		ListNode node = head;
+		ListNode<T> node = head;
 		while (node.next != null) {
 			node = node.next;
 			counter++;
@@ -146,12 +146,12 @@ public class LinkedList implements List {
 	}
 
 	@Override
-	public Object get(int index) {
+	public T get(int index) {
 		if (index < 0 || isEmpty()) {
 			throw new IndexOutOfBoundsException();
 		}
 
-		ListNode node = head;
+		ListNode<T> node = head;
 		int counter = 0;
 		while (node != null && counter < index) {
 			node = node.next;
@@ -167,12 +167,12 @@ public class LinkedList implements List {
 	}
 
 	@Override
-	public int indexOf(Object value) {
+	public int indexOf(T value) {
 		if (isEmpty()) {
 			return -1;
 		}
 
-		ListNode node = head;
+		ListNode<T> node = head;
 		int counter = 0;
 		while (node != null) {
 			if (Objects.equals(node.value, value)) {
@@ -186,12 +186,12 @@ public class LinkedList implements List {
 	}
 
 	@Override
-	public Object set(int index, Object value) {
+	public T set(int index, T value) {
 		if (index < 0 || isEmpty()) {
 			throw new IndexOutOfBoundsException();
 		}
 
-		ListNode node = head;
+		ListNode<T> node = head;
 		int counter = 0;
 		while (node != null && counter < index) {
 			node = node.next;
@@ -202,7 +202,7 @@ public class LinkedList implements List {
 			throw new IndexOutOfBoundsException();
 		}
 
-		Object old = node.value;
+		T old = node.value;
 		node.value = value;
 		return old;
 	}

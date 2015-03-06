@@ -3,8 +3,8 @@ package list;
 public class LinkedListTest extends ListTestBase {
 
 	@Override
-	protected List getListImpl() {
-		return new LinkedList();
+	protected List<String> getListImpl() {
+		return new LinkedList<String>();
 	}
 
 }

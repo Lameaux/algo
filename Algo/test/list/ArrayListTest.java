@@ -10,8 +10,8 @@ import org.junit.Test;
 public class ArrayListTest extends ListTestBase {
 
 	@Override
-	protected List getListImpl() {
-		return new ArrayList();
+	protected List<String> getListImpl() {
+		return new ArrayList<String>();
 	}
 
 	@Test
@@ -19,7 +19,7 @@ public class ArrayListTest extends ListTestBase {
 		String value1 = "value1";
 		list.add(value1);
 		assertEquals("Size = 1", 1, list.size());
-		((ArrayList) list).trimToSize();
+		((ArrayList<String>) list).trimToSize();
 		assertEquals("Size = 1", 1, list.size());
 
 		try {

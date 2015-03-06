@@ -1,15 +1,15 @@
 package list;
 
-public class ListNode {
+public class ListNode<T> {
 
-	public ListNode next;
-	public Object value;
+	public ListNode<T> next;
+	public T value;
 	
 	public ListNode() {
 		
 	}
 	
-	public ListNode(Object value) {
+	public ListNode(T value) {
 		this.value = value;
 	}
 

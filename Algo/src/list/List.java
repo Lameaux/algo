@@ -1,15 +1,15 @@
 package list;
 
 
-public interface List {
+public interface List<T> {
 
-	void add(Object value);
+	void add(T value);
 
-	boolean remove(Object value);
+	boolean remove(T value);
 
 	void clear();
 
-	boolean contains(Object value);
+	boolean contains(T value);
 
 	void reverse();
 
@@ -19,10 +19,10 @@ public interface List {
 
 	boolean isEmpty();
 	
-	Object get(int index);
+	T get(int index);
 	
-	Object set(int index, Object value);
+	T set(int index, T value);
 	
-	int indexOf(Object value);
+	int indexOf(T value);
 
 }
