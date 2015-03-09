@@ -1,6 +1,8 @@
 package tree;
 
 import objects.Objects;
+import queue.ArrayQueue;
+import queue.Queue;
 import stack.ArrayStack;
 import stack.Stack;
 
@@ -42,12 +44,28 @@ public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 		return size;
 	}
 
+	/**
+	 * In-order iterative traversal
+	 */
 	@Override
 	public Object[] toArray() {
 		Object[] array = new Object[size()];
-		
-		// TODO
-		
+
+		Stack<TreeNode<T>> s = new ArrayStack<TreeNode<T>>();
+
+		TreeNode<T> current = top;
+		int index = 0;
+		while (current != null || !s.empty()) {
+			if (current != null) { 
+				s.push(current); // pushing left nodes to the stack
+				current = current.left;
+			} else { // no more left nodes, pop from stack and check for right
+				TreeNode<T> n = s.pop();
+				array[index++] = n.value;
+				current = n.right;
+			}
+		}
+
 		return array;
 	}
 
@@ -87,7 +105,7 @@ public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public boolean delete(T value) {
-		// TODO Auto-generated method stub
+		// TODO
 		return false;
 	}
 
@@ -123,8 +141,35 @@ public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public int height() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		if (top == null) {
+			return 0;
+		}
+
+		Queue<TreeNode<T>> q = new ArrayQueue<TreeNode<T>>();
+		q.offer(top);
+
+		int height = 0;
+
+		while (true) {
+			if (q.empty()) {
+				return height;
+			}
+			height++;
+			int count = q.size(); // counts the number of nodes on each level
+			// pop all nodes on the same level and push the next level
+			while (count > 0) {
+				TreeNode<T> n = q.pop();
+				count--;
+				if (n.left != null) {
+					q.offer(n.left);
+				}
+				if (n.right != null) {
+					q.offer(n.right);
+				}
+			}
+		}
+
 	}
 
 }
