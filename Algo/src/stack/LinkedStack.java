@@ -42,5 +42,16 @@ public class LinkedStack<E> implements Stack<E> {
 		return head == null;
 	}
 
+	@Override
+	public int size() {
+		int size=0;
+		ListNode<E> curr = head;
+		while (curr != null) {
+			size++;
+			curr = curr.next;
+		}
+		return size;
+	}	
+	
 }
 

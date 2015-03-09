@@ -10,4 +10,6 @@ public interface Stack<E> {
 
 	boolean empty();
 
+	int size();
+
 }

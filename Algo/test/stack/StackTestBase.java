@@ -32,6 +32,18 @@ public abstract class StackTestBase {
 	}
 
 	@Test
+	public void testSize() {
+		assertEquals("0", 0, stack.size());
+		String value = "value";
+		assertEquals(value, stack.push(value));
+		assertEquals("1", 1, stack.size());
+		for (int i = 0; i < 10; i++ ) {
+			assertEquals(value, stack.push(value));
+		}
+		assertEquals("11", 11, stack.size());
+	}	
+	
+	@Test
 	public void testPushPop() {
 		String[] values = new String[] { "a", "b", "c", "d", "e" };
 		for (String v : values) {

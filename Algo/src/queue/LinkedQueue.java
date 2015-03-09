@@ -53,6 +53,17 @@ public class LinkedQueue<E> implements Queue<E> {
 	@Override
 	public boolean empty() {
 		return head == null;
+	}
+
+	@Override
+	public int size() {
+		int size=0;
+		ListNode<E> curr = head;
+		while (curr != null) {
+			size++;
+			curr = curr.next;
+		}
+		return size;
 	}	
 	
 }

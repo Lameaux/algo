@@ -31,6 +31,18 @@ public abstract class QueueTestBase {
 	}
 
 	@Test
+	public void testSize() {
+		assertEquals("0", 0, queue.size());
+		String value = "value";
+		assertTrue("Add success", queue.offer(value));
+		assertEquals("1", 1, queue.size());
+		for (int i = 0; i < 10; i++ ) {
+			assertTrue("Add success", queue.offer(value));
+		}
+		assertEquals("11", 11, queue.size());
+	}	
+	
+	@Test
 	public void testPushPop() {
 		String[] values = new String[] { "a", "b", "c", "d", "e" };
 		for (String v : values) {
