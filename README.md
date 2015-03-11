@@ -5,6 +5,7 @@ This is my sandbox for playing with algorithms and data structures. There you ca
 ### Sorting
   - Bubble Sort
   - Insertion Sort
+  - Selection Sort
   - MergeSort
   - QuickSort
 
@@ -12,14 +13,27 @@ This is my sandbox for playing with algorithms and data structures. There you ca
   - ArrayList impl.
   - LinkedList impl.
 
+### Stack
+  - ArrayStack impl.
+  - LinkedStack impl.
+
+### Queue
+  - ArrayQueue impl.
+  - LinkedQueue impl.
+
+### Deque
+  - LinkedDeque impl.
+
 ### Binary Search Tree (BST)
   - BST using backing **array**
   - BST using recursion
+  - BST using iteration (in progress)
 
 ### Utilities
   - Reversion of LinkedList and array
   - Swapping using XOR
-  - Object.equals
+  - Object.equals, less, greater
+  - Math bitshifts
   - etc.
 
 ### Programming Puzzles
