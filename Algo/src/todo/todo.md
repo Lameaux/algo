@@ -1,6 +1,7 @@
 ### Things to do:
 
-  - Iterative BST (stack/queue)
+  - Deque - double linked and array	
+  - Iterative delete from BST
   - Balanced BST (AVL)
   - Heap
   - Radix Sort
