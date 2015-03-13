@@ -1,4 +1,4 @@
-package tree.puzzles.bloggodocstructure;
+package puzzles.bloggodocstructure;
 
 public class CharReader {
 

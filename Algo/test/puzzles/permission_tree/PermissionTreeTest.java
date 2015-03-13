@@ -1,9 +1,11 @@
-package tree.puzzles.permission_tree;
+package puzzles.permission_tree;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import puzzles.permission_tree.PermissionTree;
 
 /*
 http://community.topcoder.com/stat?c=problem_statement&pm=3093&rd=5864

@@ -1,9 +1,11 @@
-package tree.puzzles.bloggodocstructure;
+package puzzles.bloggodocstructure;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import puzzles.bloggodocstructure.BloggoDocStructure;
 
 public class BloggoDocStructureTest {
 

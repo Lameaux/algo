@@ -1,4 +1,4 @@
-package tree.puzzles.permission_tree;
+package puzzles.permission_tree;
 
 import java.util.Comparator;
 

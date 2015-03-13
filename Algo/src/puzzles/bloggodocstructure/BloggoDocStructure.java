@@ -1,4 +1,4 @@
-package tree.puzzles.bloggodocstructure;
+package puzzles.bloggodocstructure;
 
 import java.util.Iterator;
 import java.util.Stack;
