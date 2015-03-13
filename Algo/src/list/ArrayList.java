@@ -22,9 +22,7 @@ public class ArrayList<T> implements List<T> {
 
 	private void ensureCapacity(int capacity) {
 		if (capacity > array.length) {
-			@SuppressWarnings("unchecked")
-			T[] newArray = (T[])new Object[array.length * ARRAY_GROW_RATIO];
-			System.arraycopy(array, 0, newArray, 0, array.length);
+			T[] newArray = Arrays.enlargeAndCopy(array, array.length * ARRAY_GROW_RATIO);
 			// GC
 			java.util.Arrays.fill(array, 0, array.length-1, null);			
 			array = newArray;
@@ -33,10 +31,7 @@ public class ArrayList<T> implements List<T> {
 
 	public void trimToSize() {
 		if (count < array.length) {
-			@SuppressWarnings("unchecked")
-			T[] newArray = (T[])new Object[count];
-			System.arraycopy(array, 0, newArray, 0, count);
-			array = newArray;
+			array = Arrays.shrinkAndCopy(array, count);;
 		}
 	}
 

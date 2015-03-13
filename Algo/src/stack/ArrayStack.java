@@ -2,6 +2,8 @@ package stack;
 
 import java.util.EmptyStackException;
 
+import arrays.Arrays;
+
 public class ArrayStack<E> implements Stack<E> {
 
 	private static final int INITIAL_STACK_SIZE = 32;
@@ -21,9 +23,7 @@ public class ArrayStack<E> implements Stack<E> {
 
 	private void ensureCapacity(int capacity) {
 		if (capacity > array.length) {
-			@SuppressWarnings("unchecked")
-			E[] newArray = (E[]) new Object[array.length * ARRAY_GROW_RATIO];
-			System.arraycopy(array, 0, newArray, 0, array.length);
+			E[] newArray = Arrays.enlargeAndCopy(array, array.length * ARRAY_GROW_RATIO);
 			// GC
 			java.util.Arrays.fill(array, 0, array.length-1, null);			
 			array = newArray;

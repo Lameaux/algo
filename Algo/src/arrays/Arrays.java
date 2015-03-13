@@ -29,4 +29,19 @@ public class Arrays {
 		array[j] = array[i] ^ array[j]; // i^j^j = i
 		array[i] = array[i] ^ array[j]; // j^j^i = j
 	}
+
+	public static <T> T[] enlargeAndCopy(T[] array, int requiredCapacity) {
+		@SuppressWarnings("unchecked")
+		T[] newArray = (T[]) new Object[requiredCapacity];
+		System.arraycopy(array, 0, newArray, 0, array.length);
+		return newArray;
+	}
+
+	public static <T> T[] shrinkAndCopy(T[] array, int requiredCapacity) {
+		@SuppressWarnings("unchecked")
+		T[] newArray = (T[]) new Object[requiredCapacity];
+		System.arraycopy(array, 0, newArray, 0, requiredCapacity);
+		return newArray;
+	}
+
 }
