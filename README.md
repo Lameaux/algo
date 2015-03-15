@@ -22,7 +22,9 @@ This is my sandbox for playing with algorithms and data structures. There you ca
   - LinkedQueue impl.
 
 ### Deque
+  - ArrayDeque impl.
   - LinkedDeque impl.
+  - DoubleLinkedDeque impl.
 
 ### Binary Search Tree (BST)
   - BST using backing **array**
