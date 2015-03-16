@@ -105,10 +105,81 @@ public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public boolean delete(T value) {
-		// TODO
+		if (isEmpty()) {
+			return false;
+		}
+
+		// traverse
+		TreeNode<T> parent = null;
+		TreeNode<T> current = top;
+		while (current != null) {
+			if (Objects.equals(value, current.value)) {
+
+				// GC
+				current.value = null;				
+				
+				if (current.left == null && current.right == null) { // no children
+					replaceCurrentInParent(parent, current, null);
+				} else if (current.left == null) {
+					replaceCurrentInParent(parent, current, current.right);					
+				} else if (current.right == null) {
+					replaceCurrentInParent(parent, current, current.left);					
+				} else { // has both
+					TreeNode<T>[] lowestWithParent = findLowestWithParent(current.right, current); // find lowest in right part
+					TreeNode<T> lowestNode = lowestWithParent[0];
+					TreeNode<T> lowestParent = lowestWithParent[1];
+					current.value = lowestNode.value;
+					// GC
+					lowestNode.value = null;
+					if (lowestParent.left == current) {
+						lowestParent.left = null;
+					} else {
+						lowestParent.right = null;
+					}
+				}
+				return true;
+				
+			} else if (Objects.less(value, current.value)) {
+				if (current.left == null) {
+					return false;
+				} else {
+					parent = current;
+					current = current.left;
+					continue;
+				}
+
+			} else {
+				if (current.right == null) {
+					return false;
+				} else {
+					parent = current;
+					current = current.right;
+					continue;
+				}
+			}
+		}
 		return false;
 	}
 
+	private void replaceCurrentInParent(TreeNode<T> parent, TreeNode<T> current, TreeNode<T> node) {
+		if (parent == null) {
+			top = node;
+		} else if (parent.left == current) {
+			parent.left = node;
+		} else {
+			parent.right = node;
+		}		
+	}	
+	
+	@SuppressWarnings("unchecked")
+	private TreeNode<T>[] findLowestWithParent(TreeNode<T> node, TreeNode<T> parent) {
+		while (node.left != null) {
+			parent = node;
+			node = node.left;
+		}
+		return (TreeNode<T>[])new TreeNode[]{node, parent};
+	}
+	
 	@Override
 	public boolean contains(T value) {
 		if (isEmpty()) {

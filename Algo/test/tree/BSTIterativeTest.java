@@ -2,7 +2,6 @@ package tree;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class BSTIterativeTest extends BSTTestBase {
@@ -19,12 +18,6 @@ public class BSTIterativeTest extends BSTTestBase {
 			tree.add(String.valueOf(i));
 		}
 		assertEquals(N, tree.size());
-	}
-
-	@Test
-	@Ignore
-	public void testDelete() {
-		
 	}
 	
 }

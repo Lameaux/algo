@@ -1,6 +1,5 @@
 ### Things to do:
 
-  - Iterative delete from BST
   - Balanced BST (AVL)
   - Heap
   - Radix Sort
