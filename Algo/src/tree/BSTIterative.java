@@ -131,10 +131,11 @@ public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 					current.value = lowestNode.value;
 					// GC
 					lowestNode.value = null;
+					
 					if (lowestParent.left == current) {
-						lowestParent.left = null;
+						lowestParent.left = lowestNode.right; // right part or null
 					} else {
-						lowestParent.right = null;
+						lowestParent.right = lowestNode.right;  // right part or null
 					}
 				}
 				return true;
