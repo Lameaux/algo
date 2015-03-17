@@ -148,11 +148,9 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 		if (value == null) {
 			throw new IllegalArgumentException("Null is not supported");
 		}
-
 		if (isEmpty()) {
 			return false;
 		}
-
 		try {
 			top = rDelete(top, value);
 			return true;
@@ -192,19 +190,16 @@ public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 				root.value = minimalRight.value;
 				root.right = rDelete(root.right, minimalRight.value);
 			}
-
 		} else if (Objects.less(value, root.value)) {
 			if (root.left == null) {
 				throw new IllegalArgumentException(value + " not found");
-			} else {
-				root.left = rDelete(root.left, value);
-			}
+			} 
+			root.left = rDelete(root.left, value);
 		} else {
 			if (root.right == null) {
 				throw new IllegalArgumentException(value + " not found");
-			} else {
-				root.right = rDelete(root.right, value);
 			}
+			root.right = rDelete(root.right, value);
 		}
 
 		return root;
