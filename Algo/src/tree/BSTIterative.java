@@ -6,6 +6,12 @@ import queue.Queue;
 import stack.ArrayStack;
 import stack.Stack;
 
+/**
+ * Implementation of BST using iteration
+ * @author sergii.sizov
+ *
+ * @param <T>
+ */
 public class BSTIterative<T extends Comparable<T>> implements BST<T> {
 
 	private TreeNode<T> top;

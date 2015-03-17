@@ -2,6 +2,12 @@ package tree;
 
 import objects.Objects;
 
+/**
+ * Implementation of BST using recursion
+ * @author sergii.sizov
+ *
+ * @param <T>
+ */
 public class BSTRecursive<T extends Comparable<T>> implements BST<T> {
 
 	private TreeNode<T> top;
