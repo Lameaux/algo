@@ -110,6 +110,7 @@ public abstract class BalancedBSTTestBase {
 		for (int i = 0; i < N; i++) {
 			tree.put(String.valueOf(i), String.valueOf(i));
 			assertTrue("Tree should be balanced", tree.balance() <= 1);
+			assertTrue("Tree should be balanced", tree.balance() >= -1);			
 		}
 		assertEquals(N, tree.size());
 	}
