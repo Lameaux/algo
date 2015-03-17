@@ -5,23 +5,23 @@ import list.ListNode;
 
 public class LinkedListReverse {
 
-	public static void reverseRecursive(LinkedList list) {
+	public static <T> void reverseRecursive(LinkedList<T> list) {
 
-		ListNode head = list.getHead();
-		ListNode tail = reverse(head);
+		ListNode<T> head = list.getHead();
+		ListNode<T> tail = reverse(head);
 		list.setHead(tail);
 	}
 
-	private static ListNode reverse(ListNode head) {
+	private static <T> ListNode<T> reverse(ListNode<T> head) {
 		if (head == null) {
 			return null;
 		}
 		if (head.next == null) {
 			return head;
 		}
-		ListNode newHead = head.next;
+		ListNode<T> newHead = head.next;
 		head.next = null;
-		ListNode reversed = reverse(newHead);
+		ListNode<T> reversed = reverse(newHead);
 		newHead.next = head;
 
 		return reversed;
