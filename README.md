@@ -29,7 +29,11 @@ This is my sandbox for playing with algorithms and data structures. There you ca
 ### Binary Search Tree (BST)
   - BST using backing **array**
   - BST using recursion
-  - BST using iteration (in progress)
+  - BST using iteration
+
+### Self-balancing BST
+  - AVL tree
+  - Red-black tree (in progress)
 
 ### Utilities
   - Reversion of LinkedList and array
