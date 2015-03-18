@@ -1,4 +1,4 @@
-package list.puzzles;
+package puzzles.list;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -6,6 +6,7 @@ import list.LinkedList;
 
 import org.junit.Test;
 
+import puzzles.list.LinkedListReverse;
 import arrays.Arrays;
 
 public class LinkedListReverseTest {

@@ -1,4 +1,4 @@
-package list.puzzles;
+package puzzles.list;
 
 import list.LinkedList;
 import list.ListNode;
